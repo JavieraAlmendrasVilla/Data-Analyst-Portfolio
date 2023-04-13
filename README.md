@@ -14,8 +14,12 @@ Computer Engineering at the Technical University of Munich in Germany.
 ### Body effects of smoking
 code: [Smoking-data](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R) 
 
-source: [Kaggle](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)
+**Description:**
+**Skills:**
+**Technology:**
+**Results:****
 
+source: [Kaggle](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)
 
 
 
