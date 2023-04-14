@@ -48,7 +48,7 @@ head(smoking_dt)
 6:|     217     |     199      |  48 | 129 |    16.2    |          1          |     1.2    |  18 |  27 |  33 |   Y  |        0      |    Y   |    0    |
  
 
-First, I separated the oral data into a different table called ```r oral_dt ```
+First, I separated the oral data into a different table called ``` oral_dt ```
 
 ```r
 oral_dt <- smoking[oral == "Y", c('gender', 'age','dental caries', 'tartar', 'smoking')]
@@ -216,6 +216,7 @@ odds ratio
 
 The test supports the hypothesis that there is a significant association between smoking and the development of caries, with smokers being more likely to have caries compared to non-smokers.
 
+[*full code*](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
 
 
 
