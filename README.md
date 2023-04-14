@@ -74,7 +74,6 @@ head(oral_dt)
 Secondly, I performed an nnalysis per gender
 
 ```r
-#Analysis per Gender
 number_of_women <- oral_dt[gender == "F", .N]
 ```
 Number of women = 20291
@@ -93,10 +92,11 @@ Proportion of men = 64%
 
 I found that the data is imbalanced towards men with a 64% of males.
 This is clearly depicted in the following bar plot:
+
 ```r
-#Bar plot
 dist_gender <- ggplot(oral_dt, aes(gender, color = factor(gender), fill = factor(gender))) + geom_bar() + labs(x = "Gender", y = "Number of people", title = "Distribution per Gender")
 ```
+
 **Distribution of the sample per gender**
 
 ![Distribution of the sample per gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/Dist%20per%20gender.jpeg)
@@ -216,7 +216,7 @@ odds ratio
 
 The test supports the hypothesis that there is a significant association between smoking and the development of caries, with smokers being more likely to have caries compared to non-smokers.
 
-[*full code*](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
+[see the *full code*](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
 
 
 
