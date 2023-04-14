@@ -10,7 +10,7 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 
 ### Body effects of smoking
 *code:* [Smoking-data](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)<br>
-*source:* [Goverment of Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
+*source:* [Goverment of South Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
 
 **Description:** The entire dataset contains health data with a total of 55692 observations and 27 variables. For this project, I specifically investigated the variables related to oral health.<br>
 *age*: 5-years gap<br>
