@@ -12,15 +12,16 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 *code:* [Smoking-data](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)<br>
 *source:* [Goverment of Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
 
-**Description:** The entire dataset contains health data with a total of 55692 obsvervations and 27 variables. In this project I investigated the variables for Oral health.<br>
+**Description:** The entire dataset contains health data with a total of 55692 observations and 27 variables. For this project, I specifically investigated the variables related to oral health.<br>
 *age*: 5-years gap<br>
 *gender*: femenine / masculine<br>
 *caries*: dental caries<br>
 *tartar*: tartar status<br>
 *smoking*: smoking status<br>
+
 **Skills:** data cleaning, data visualization, descriptive statistics, hipothesis testing, analysis of binary variables, Fisher test.<br>
-**Technology:** R<br>
-**Results:** The data suggest that men and smokers in general are more likely to have caries.<br>
+**Technology:** R using tidyr, magrittr, and data.table for data manipulation and ggplot2 for visualization. <br>
+**Results:** The data suggests that, in general, men and smokers are more likely to have caries.<br>
 **Analysis:**<br>
 
 Reading the data:
@@ -46,18 +47,19 @@ head(smoking_dt)
 5:|     184     |      74      |  62 | 107 |    12.5    |          1          |     0.6    |  16 |  14 |  22 |   Y  |        0      |    N   |    0    |
 6:|     217     |     199      |  48 | 129 |    16.2    |          1          |     1.2    |  18 |  27 |  33 |   Y  |        0      |    Y   |    0    |
  
- 
+
+First, I separated the oral data into a different table called ```r oral_dt ```
+
 ```r
-#Separate oral data in a different table:
 oral_dt <- smoking[oral == "Y", c('gender', 'age','dental caries', 'tartar', 'smoking')]
-oral_dt
 
 #set order
 oral_dt <- setorder(oral_dt, cols="age")
-oral_dt
 
 #change column name
 colnames(oral_dt)[3] <- "caries"
+```
+```r
 head(oral_dt)
 ```
 |    | gender   | age   | caries  | tartar   | smoking   |
@@ -69,7 +71,7 @@ head(oral_dt)
 | 5  | M        | 20    | 1       | Y        | 0         |
 | 6  | M        | 20    | 0       | Y        | 0         |
 
-Analysis per Gender
+Secondly, I performed an nnalysis per gender
 
 ```r
 #Analysis per Gender
@@ -88,15 +90,131 @@ Proportion of women = 36%
 proportion_of_men <- round(n_men/nrow(oral_dt)*100)
 ```
 Proportion of men = 64%
+
+I found that the data is imbalanced towards men with a 64% of males.
+This is clearly depicted in the following bar plot:
 ```r
 #Bar plot
 dist_gender <- ggplot(oral_dt, aes(gender, color = factor(gender), fill = factor(gender))) + geom_bar() + labs(x = "Gender", y = "Number of people", title = "Distribution per Gender")
-dist_gender
+```
+**Distribution of the sample per gender**
+
+![Distribution of the sample per gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/Dist%20per%20gender.jpeg)
+
+This boxplot shows the difference between the mean age of females and males
+
+![difference in mean ages](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/boxplot%20gender.jpeg)
+
+Furthermore, I tested the statistical significance of the mean age using the Welch-test.
+
+```r
+#Welch-test
+#Ho: true difference in means between group F and group M is equal to 0
+#H1: true difference in means between group F and group M is not equal to 0
+
+welch_test_ages <- t.test(age ~ gender, oral_dt)
+welch_test_ages$p.value #P-value = 0
+```
+The Welch test supports the hypothesis that the difference in ages between men and women is statistically significant.
+
+Next, I investigasted the sample distribution per age and the number of smokers per gender
+
+```r
+ages_plot <- ggplot(ages, aes(age, total, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of People", y = "Age", title = "Sample Distribution per Age")
+
+women_plot <- ggplot(ages, aes(age, females, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of Women", y = "Age", title = "Women's Distribution per Age")
+
+men_plot <- ggplot(ages, aes(age, males, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of Women", y = "Age", title = "Men's Distribution per Age")
+
+ages_plot/women_plot/men_plot
+```
+**Distribution per Gender**
+
+![Distribution per Gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/3%20ages%20plot.jpeg)
+
+**Distribution of Smokers per Gender**
+
+![smokers per gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking-plot_smokers_per_gender.jpeg)
+
+
+Moreover, I anlized the prevalence of Caries per gender
+
+```r
+caries_per_gender <- ggplot(oral_dt, aes(caries, color = factor(caries), fill = factor(caries))) + geom_bar(width = 0.5) + facet_wrap(~gender) + labs(x ="1 = Caries, 0 = No Caries", y = "Number of People", title = "Analysis of Caries per Gender")
 ```
 
+**Distribution of Caries per Gender**
 
+![caries per gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking-caries_per_gender.jpeg)
 
+The plots show a similar prevalence of caries among both genders. Therefore, I applied the Fisher test to examine the likelihood that one gender is more likely to develop caries.
 
+```r
+#Fischer test
+
+caries <- oral_dt[caries == "1", .(caries = .N), by = gender]
+non_caries <- oral_dt[caries == "0", .(non_caries = .N), by = gender]
+cont_caries <- merge(caries, non_caries, by = "gender")
+cont_caries[, gender := NULL]
+
+#     gender caries non_caries
+#1:      F   3402      16889
+#2:      M   8479      26922
+
+fisher.test(cont_caries, alternative = "less")
+
+Fisher's Exact Test for Count Data
+
+data:  cont_caries
+p-value < 2.2e-16
+alternative hypothesis: true odds ratio is less than 1
+95 percent confidence interval:
+ 0.0000000 0.6638809
+sample estimates:
+odds ratio 
+ 0.6395845 
+
+```
+The Fisher test concludes that men are more likely to have caries.
+
+Lastly, I examined the relationship between smoking and having caries.
+
+```r
+smoking_caries <- ggplot(oral_dt, aes(caries, color = factor(caries), fill = factor(caries))) + geom_bar(width = 0.5) + facet_wrap(~smoking) + labs(x ="0 = Non Smokers, 1 = Smokers", y = "Number of people", title = "Analysis of caries on smoking")
+
+```
+
+![caries on smoking](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking-plot_caries_on_smoking.jpeg)
+
+The plots show that the number of individuals with caries among smokers and non-smokers is similar, although the proportion of non-smokers without caries is much larger. I applied the Fisher test to compare the likelihood of having caries between both samples.
+
+```r
+#Fisher test
+
+caries <- oral_dt[caries == "1", .(caries = .N), by = smoking]
+no_caries <- oral_dt[caries == "0", .(no_caries = .N), by = smoking]
+cont_caries_smoking <- merge(caries, no_caries, by = "smoking")
+cont_caries_smoking[, smoking := NULL]
+
+#     smoking caries no_caries
+#1:       0   6375     28862
+#2:       1   5506     14949
+
+fisher.test(cont_caries_smoking, alternative = "less")$p.value #P-value = 3.453742e-130
+
+Fisher's Exact Test for Count Data
+
+data:  cont_caries_smoking
+p-value < 2.2e-16
+alternative hypothesis: true odds ratio is less than 1
+95 percent confidence interval:
+ 0.0000000 0.6208944
+sample estimates:
+odds ratio 
+ 0.5996702 
+```
+
+The test supports the hypothesis that there is a significant association between smoking and the development of caries, with smokers being more likely to have caries compared to non-smokers.
 
 
 
