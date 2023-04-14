@@ -216,7 +216,7 @@ odds ratio
 
 The test supports the hypothesis that there is a significant association between smoking and the development of caries, with smokers being more likely to have caries compared to non-smokers.
 
-[see the *full code*](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
+see the [*full code*](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
 
 
 
