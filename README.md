@@ -2,13 +2,10 @@
 
 ## About
 
-Hello! I'm Javiera ALmendras Villa, I hold a Doctor of Dental Surgery degree from the Universidad de la Frontera in Chile. 
-A Bachelor of Science (B.Sc) degree on International Business and Economics from the Otto-von-Guericke University of Magdeburg in Germany, and 
-I'm currently studying for a Master of Science (M.Sc) degree in Management and Technology with specilization in Operations and Supply Chain Management & 
-Computer Engineering at the Technical University of Munich in Germany.
+Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery degree from the Universidad de la Frontera in Chile, as well as a Bachelor of Science (B.Sc) degree in International Business and Economics from the Otto-von-Guericke University of Magdeburg in Germany. Currently, I am pursuing a Master of Science (M.Sc) degree in Management and Technology with a specialization in Operations and Supply Chain Management and Computer Engineering at the Technical University of Munich in Germany.
 
 ## Table of Content
--[Body effects of smoking](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R) on R
+- [Body effects of smoking](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking.R)
 ## Portfolio Projects
 
 ### Body effects of smoking
@@ -16,15 +13,21 @@ Computer Engineering at the Technical University of Munich in Germany.
 *source:* [Goverment of Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
 
 **Description:** The entire dataset contains health data with a total of 55692 obsvervations and 27 variables. In this project I investigated the variables for Oral health.<br>
-age: 5-years gap<br>
-gender: femenine / masculine<br>
-caries: dental caries<br>
-tartar: tartar status<br>
-smoking: smoking status<br>
+*age*: 5-years gap<br>
+*gender*: femenine / masculine<br>
+*caries*: dental caries<br>
+*tartar*: tartar status<br>
+*smoking*: smoking status<br>
 **Skills:** data cleaning, data visualization, descriptive statistics, hipothesis testing, analysis of binary variables, Fisher test.<br>
 **Technology:** R<br>
 **Results:** The data suggest that men and smokers in general are more likely to have caries.<br>
 **Analysis:**<br>
+
+Reading the data:
+```r
+head(smoking_dt)
+```
+
   | ID  | gender | age  |  height(cm) | weight(kg) | waist(cm) | eyesight(left) | eyesight(right) | hearing(left) | hearing(right) | systolic | relaxation | 
   | ----|--------| ---- |------------ | -----------| ----------| -------------  | --------------- |-------------- |----------------|----------|------------|
 1:|  0  |    F   |  40  |     155     |     60     |    81.3   |       1.2      |       1.0       |       1       |        1       |    114   |     73     |
@@ -44,6 +47,53 @@ smoking: smoking status<br>
 6:|     217     |     199      |  48 | 129 |    16.2    |          1          |     1.2    |  18 |  27 |  33 |   Y  |        0      |    Y   |    0    |
  
  
+```r
+#Separate oral data in a different table:
+oral_dt <- smoking[oral == "Y", c('gender', 'age','dental caries', 'tartar', 'smoking')]
+oral_dt
+
+#set order
+oral_dt <- setorder(oral_dt, cols="age")
+oral_dt
+
+#change column name
+colnames(oral_dt)[3] <- "caries"
+head(oral_dt)
+```
+|    | gender   | age   | caries  | tartar   | smoking   |
+|---:|:--------:|:-----:|:-------:|:--------:|:---------:|
+| 1  | M        | 20    | 0       | Y        | 1         |
+| 2  | M        | 20    | 0       | N        | 0         |
+| 3  | M        | 20    | 0       | N        | 0         |
+| 4  | M        | 20    | 0       | Y        | 1         |
+| 5  | M        | 20    | 1       | Y        | 0         |
+| 6  | M        | 20    | 0       | Y        | 0         |
+
+Analysis per Gender
+
+```r
+#Analysis per Gender
+number_of_women <- oral_dt[gender == "F", .N]
+```
+Number of women = 20291
+```r
+number_of_men <- oral_dt[gender == "M", .N]
+```
+Number of men = 35401
+```r
+proportion_of_women <- round(n_women/nrow(oral_dt)*100)
+```
+Proportion of women = 36%
+```r
+proportion_of_men <- round(n_men/nrow(oral_dt)*100)
+```
+Proportion of men = 64%
+```r
+#Bar plot
+dist_gender <- ggplot(oral_dt, aes(gender, color = factor(gender), fill = factor(gender))) + geom_bar() + labs(x = "Gender", y = "Number of people", title = "Distribution per Gender")
+dist_gender
+```
+
 
 
 
