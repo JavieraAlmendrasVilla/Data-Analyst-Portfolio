@@ -120,13 +120,17 @@ The Welch test supports the hypothesis that the difference in ages between men a
 Next, I investigasted the sample distribution per age and the number of smokers per gender
 
 ```r
-ages_plot <- ggplot(ages, aes(age, total, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of People", y = "Age", title = "Sample Distribution per Age")
+ages_plot <- ggplot(ages, aes(age, total, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "", y = "", title = "Sample Distribution per Age")
+ages_plot
 
-women_plot <- ggplot(ages, aes(age, females, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of Women", y = "Age", title = "Women's Distribution per Age")
+women_plot <- ggplot(ages, aes(age, females, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "", y = "Number of People", title = "Women's Distribution per Age")
+women_plot
 
-men_plot <- ggplot(ages, aes(age, males, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Number of Women", y = "Age", title = "Men's Distribution per Age")
+men_plot <- ggplot(ages, aes(age, males, color = factor(age), fill = factor(age))) + geom_col() + labs(x = "Age", y = "", title = "Men's Distribution per Age")
+men_plot
 
 ages_plot/women_plot/men_plot
+
 ```
 **Distribution of Ages per Gender**
 
