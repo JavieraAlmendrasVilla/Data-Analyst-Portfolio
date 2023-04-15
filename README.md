@@ -19,9 +19,9 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 *tartar*: tartar status<br>
 *smoking*: smoking status<br>
 
-**Skills:** data cleaning, data visualization, descriptive statistics, hipothesis testing, analysis of binary variables, Welch-test, Fisher-test.<br>
-**Technology:** R using tidyr, magrittr, and data.table for data manipulation and ggplot2 for visualization. <br>
-**Results:** The data suggests that, in general, men and smokers are more likely to have caries.<br>
+**Skills:** Data cleansing, data visualization, descriptive statistics, hypothesis testing, analysis of binary variables, Welch's t-test, Fisher's exact test.<br>
+**Technology:** R programming language using tidyr, magrittr, and data.table libraries for data manipulation and ggplot2 library for visualization.<br>
+**Results:** The analysis of the data indicates that, overall, men and individuals who smoke are more prone to develop caries.<br>
 **Analysis:**<br>
 
 Reading the data:
