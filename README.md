@@ -128,11 +128,11 @@ men_plot <- ggplot(ages, aes(age, males, color = factor(age), fill = factor(age)
 
 ages_plot/women_plot/men_plot
 ```
-**Distribution per Gender**
+**Distribution of Ages per Gender**
 
-![Distribution per Gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/3%20ages%20plot.jpeg)
+![Distribution of ages per Gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking-3_age_distr.jpeg)
 
-**Distribution of Smokers per Gender**
+**Distribution of the Number of Smokers per Gender**
 
 ![smokers per gender](https://github.com/JavieraAlmendrasVilla/Data-Analyst-Portfolio/blob/main/smoking-plot_smokers_per_gender.jpeg)
 
