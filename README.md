@@ -1,4 +1,4 @@
-# Data Analyst Portfolio
+# Portfolio
 
 ## About
 
