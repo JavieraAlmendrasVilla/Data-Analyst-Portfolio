@@ -34,12 +34,12 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 
 ### Case 2: Random Forest Model: Prediction of smoking based on the body signals
 
-*code:* [Random Forest Model](https://github.com/JavieraAlmendrasVilla/Case-2-Random-Forest-Model/blob/main/rf%20smoking.R)
+*code:* [Random Forest Model](https://github.com/JavieraAlmendrasVilla/Case-2-Random-Forest-Model/blob/main/rf%20smoking.R)<br>
 *source:* [Goverment of South Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
 
 **Description:** The entire dataset contains health data with a total of 55692 observations and 27 variables. For this project, I specifically investigated the variables relevant to predct smoking.<br>
 
-*ID:* index
+*ID:* index<br>
 *age*: 5-years gap<br>
 *gender*: femenine / masculine<br>
 *caries*: dental caries<br>
