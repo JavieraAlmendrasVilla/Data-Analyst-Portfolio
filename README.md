@@ -16,8 +16,8 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 
 ## Personal Projects
 
-### Body effects of smoking
-*code:* [Smoking-data]()<br>
+### Case 1: Analysis of Oral data
+*code:* [Smoking-data](https://github.com/JavieraAlmendrasVilla/Case-1-Oral-Health-data/blob/main/smoking.R)<br>
 *source:* [Goverment of South Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
 
 **Description:** The entire dataset contains health data with a total of 55692 observations and 27 variables. For this project, I specifically investigated the variables related to oral health.<br>
@@ -31,6 +31,37 @@ Hello! My name is Javiera Almendras Villa, and I hold a Doctor of Dental Surgery
 **Technology:** R programming language using tidyr, magrittr, and data.table packages for data manipulation and ggplot2 package for visualization.<br>
 **Results:** The analysis of the data indicates that, overall, men and individuals who smoke are more prone to develop caries.<br>
 **Analysis:** [Body effects of smoking](https://github.com/JavieraAlmendrasVilla/Case-1-Body-effects-of-smoking/blob/main/README.md)
+
+### Case 2: Random Forest Model: Prediction of smoking based on the body signals
+
+*code:* [Random Forest Model](https://github.com/JavieraAlmendrasVilla/Case-2-Random-Forest-Model/blob/main/rf%20smoking.R)
+*source:* [Goverment of South Korea](https://www.kaggle.com/datasets/kukuroo3/body-signal-of-smoking)<br>
+
+**Description:** The entire dataset contains health data with a total of 55692 observations and 27 variables. For this project, I specifically investigated the variables relevant to predct smoking.<br>
+
+*ID:* index
+*age*: 5-years gap<br>
+*gender*: femenine / masculine<br>
+*caries*: dental caries<br>
+*tartar*: tartar status<br>
+*smoking*: smoking status<br>
+*systolic:* Blood pressure<br>
+*relaxation:* Blood pressure<br>
+*fasting blood sugar*<br>
+*Cholesterol:* total<br>
+*triglyceride*<br>
+*HDL:* cholesterol type<br>
+*LDL:* cholesterol type<br>
+*hemoglobin*<br>
+*Urine protein*<br>
+*serum creatinine*<br>
+*AST:* glutamic oxaloacetic transaminase type<br>
+*ALT:* glutamic oxaloacetic transaminase type<br>
+*Gtp:* γ-GTP<br>
+
+**Skills:** Data cleansing, data visualization, descriptive statistics, Machine Learning, Random Forest Ensemble Method, method evaluation. <br>
+**Technology:** R programming language using tidyr, magrittr, data.table, tidyverse, and lubridate packages for data manipulation, randomForest package to build the model, and ggroc package for visualization and evaluation.<br>
+**Results:** The model predicts smoking with ~ 75% accuracy in the training and testing data. <br>
 
 ## Certificates
 
